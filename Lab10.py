@@ -35,10 +35,15 @@ def read_temp_f():
     temp_f = (float(temp_string) / 1000.0) * 9.0 / 5.0 + 32.0
     
     return temp_f
+
+def write_Temp_log():
+    timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
+    with open("TemperatureLog.txt", "a") as f:
+        f.write(f"{timestamp}: {read_temp_c():.2f}C - {read_temp_f():.2f}F\n")
+        print(f"{timestamp}: {read_temp_c():.2f}C - {read_temp_f():.2f}F")
     
 while True:
-    print(f"Celsius Temperature: {read_temp_c():.2f} C")
-    print(f"Fahrenheit Temperature: {read_temp_f():.2f} F")
+    write_Temp_log()
     time.sleep(1)
     
     
